@@ -29,7 +29,7 @@ zero_star()
     DIR=$BASE/ClinVarZeroStarReports
     /usr/local/bin/gcsfuse --key-file $KEY_FILE $GS_BUCKET $DIR
     echo "Starting ZeroStar Reports at " `date` >>  $DIR/log.txt
-    python3 ./ClinVarExcelReports.py --retainfiles ZeroStar >> $DIR/log.txt 2>&1
+    python3 ./ClinVarExcelReports.py ZeroStar >> $DIR/log.txt 2>&1
     echo "Completed ZeroStar Reports at " `date` >>  $DIR/log.txt
     fusermount -u $DIR
 }
@@ -43,7 +43,7 @@ one_star()
     DIR=$BASE/ClinVarOneStarReports
     /usr/local/bin/gcsfuse --key-file $KEY_FILE $GS_BUCKET $DIR
     echo "Starting OneStar Reports at " `date` >>  $DIR/log.txt
-    python3 ./ClinVarExcelReports.py --existingfiles OneStar >> $DIR/log.txt 2>&1
+    python3 ./ClinVarExcelReports.py OneStar >> $DIR/log.txt 2>&1
     echo "Completed OneStar Reports at " `date` >>  $DIR/log.txt
     fusermount -u $DIR
 }
