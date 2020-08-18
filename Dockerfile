@@ -17,6 +17,11 @@ RUN apk add --update \
     curl \
     which \
     bash \
+    gcc \
+    python3-dev \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
     fuse && rm -rf /tmp/*
 
 COPY --from=0 /go/bin/gcsfuse /usr/local/bin
@@ -29,7 +34,9 @@ RUN addgroup clinvar
 RUN adduser -h /home/clinvar -s /bin/sh -G clinvar -g "Clinvar Report Generator" -D clinvar
 
 # Install Python packages
-RUN pip3 install xlsxwriter xlrd google-cloud-storage
+RUN pip install --upgrade pip
+RUN pip install xlsxwriter xlrd
+RUN pip install --upgrade google-cloud-storage
 
 ###### KEY FILE SECTION #########
 #
