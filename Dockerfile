@@ -3,7 +3,7 @@ RUN apk add --no-cache git
 ENV GOPATH /go
 RUN go get -u github.com/googlecloudplatform/gcsfuse
 
-FROM frolvlad/alpine-python3
+FROM docker
 LABEL maintainer="toneill@broadinstitute.org"
 LABEL name="Clinvar Reporting and Mutt Mailer"
 USER root
@@ -18,7 +18,9 @@ RUN apk add --update \
     which \
     bash \
     gcc \
+    python3 \
     python3-dev \
+    py3-pip \
     musl-dev \
     libffi-dev \
     openssl-dev \
@@ -35,7 +37,8 @@ RUN adduser -h /home/clinvar -s /bin/sh -G clinvar -g "Clinvar Report Generator"
 
 # Install Python packages
 RUN pip install --upgrade pip
-RUN pip install xlsxwriter xlrd
+RUN pip install xlsxwriter
+RUN pip install xlrd==1.2.0
 RUN pip install --upgrade google-cloud-storage
 
 ###### KEY FILE SECTION #########
