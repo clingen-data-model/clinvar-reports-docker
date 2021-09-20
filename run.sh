@@ -129,8 +129,8 @@ copy_run_log()
 #
 # Main
 #
-zero_star
-one_star
+#zero_star
+#one_star
 ep_reports
 gc_reports
 #send_email
